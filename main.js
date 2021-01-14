@@ -140,7 +140,8 @@ class HangManGame
             }
         ])
 
-        if (!Number.isInteger(answers.wl))
+        // RegEx to ensure it's only a # https://stackoverflow.com/questions/1779013/check-if-string-contains-only-digits
+        if (!/^\d+$/.test(answers.wl))
         {
             console.log("As a punishment for your prodding into whether or not I took the time to do annoying type checking, you are hereby expelled from the school of magic Harry.");
             process.exit(1);
