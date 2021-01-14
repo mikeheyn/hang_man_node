@@ -103,7 +103,6 @@ class HangManGame
                 if(answer.cb == 'Yes')
                 {
                     this.Init();
-                    this.STATE = GAME_STATES.INIT;
                 }
                 else
                 {
@@ -150,8 +149,6 @@ class HangManGame
         this.word_length_max = answers.wl;
         this.dictionary = require(`./dictionaries/${answers.dictionary}`).filter(words => words.length <= this.word_length_max);
         this.word = this.dictionary[Math.floor(Math.random() * parseInt(this.dictionary.length))];
-        
-        console.log("DEBUG: WORD SELECTED: " + this.word);
 
         this.STATE = GAME_STATES.PLAY;
     }
@@ -174,11 +171,6 @@ class HangManGame
 
         this.letters_selected.push(answer.letter[0]);
         this.CheckWinLossConditions();
-    }
-
-    async GameOver()
-    {
-
     }
 
     async PrintDrawing()
@@ -226,6 +218,6 @@ new HangManGame();
 
 
 process.on('uncaughtException', err => {
-    console.error('There was an uncaught error', err)
-    process.exit(1) //mandatory (as per the Node.js docs)
+    console.error('There was an uncaught error', err);
+    process.exit(1);
 })
